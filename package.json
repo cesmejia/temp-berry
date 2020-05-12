@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "i2c-bus": "^5.2.0",
-    "raspi-i2c": "^6.2.4",
+    "pigpio": "^3.2.3",
     "serialport": "^9.0.0"
   },
   "devDependencies": {
