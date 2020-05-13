@@ -15,7 +15,7 @@ const toCelsius = (t) => {
 	  i2c1.readWord(ADDR, TEMP_REG, (err, rawData) => {
 	    if (err) throw err;
 	 
-	    console.log({raw:rawData,C:toCelsius(rawData)});
+	    console.log({raw:rawData,C:toCelsius(rawData),index:TEMP_REG.toString()});
 	 
 	    i2c1.close(err => {
 	      if (err) throw err;
