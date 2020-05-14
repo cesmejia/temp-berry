@@ -2,6 +2,7 @@ const Gpio = require("pigpio").Gpio;
 const i2c = require("i2c-bus");
 const getModes = require("./helpers/getMode");
 const makePost = require("./helpers/makePost");
+const URL =  "http://localhost:8080/temp";
 
 const trigger = new Gpio(23, { mode: Gpio.OUTPUT });
 const echo = new Gpio(24, { mode: Gpio.INPUT, alert: true });
@@ -63,7 +64,7 @@ setInterval(() => {
             console.log({ temp: parseFloat(mode[0]), len: len });
             temp = parseFloat(mode[0]);
           }
-            makePost(temp, "http://localhost:8080/temp");
+            makePost(temp, URL);
             arr = [];
         } else {
           console.log("checking.....");

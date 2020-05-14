@@ -12,5 +12,4 @@
 
 
 
-Also the trials folder is no longer available, you can check for them on previous commits,
-inside that folder was how to check for temperature and distance separately
+Also inside the trials folder are files to check each sensor individually.
