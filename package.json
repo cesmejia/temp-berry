@@ -6,13 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "temp": "nodemon trials/i2c.js",
-    "length": "sudo nodemon trials/proximity.js"
+    "length": "sudo node trials/proximity.js",
+    "start": "sudo node temp.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "i2c-bus": "^5.2.0",
+    "node-fetch": "^2.6.0",
     "pigpio": "^3.2.3",
     "serialport": "^9.0.0"
   },
