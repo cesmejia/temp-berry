@@ -1,6 +1,7 @@
 const Gpio = require("pigpio").Gpio;
 const i2c = require("i2c-bus");
 const getModes = require("./helpers/getMode");
+const makePost = require("./helpers/makePost");
 
 const trigger = new Gpio(23, { mode: Gpio.OUTPUT });
 const echo = new Gpio(24, { mode: Gpio.INPUT, alert: true });
@@ -44,24 +45,26 @@ setInterval(() => {
       i2c1.readWord(ADDR, TEMP_REG, (err, rawData) => {
         if (err) throw err;
 
-        // console.log({raw:rawData,C:toCelsius(rawData),dist:watchDog});
         arr.push(toCelsius(rawData));
 
-        if (arr.length === 30) {
+        if (arr.length === 35) {
           const mode = getModes(arr); 
           const len = mode.length;
-          
+          let temp;
+
           if (len > 1) {
             let prom = 0;
             mode.forEach((e) => {
               prom += parseFloat(e);
             });
-            console.log({ temp: prom / len, len, prom, val: mode });
-            arr = [];
+            console.log({ temp: prom / len, len, prom, val: mode })
+            temp = (prom / len);		
           } else {
             console.log({ temp: parseFloat(mode[0]), len: len });
-            arr = [];
+            temp = parseFloat(mode[0]);
           }
+            makePost(temp, "http://localhost:8080/temp");
+            arr = [];
         } else {
           console.log("checking.....");
         }

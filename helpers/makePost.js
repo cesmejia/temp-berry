@@ -1,18 +1,19 @@
 const fetch = require("node-fetch");
 
-const makePost = (temp) => {
+const makePost = async (temp, URL) => {
     
-    fetch("http://localhost:8080/temp", {
+   await fetch( URL, {
         method: "post",
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json",
+	    "Access-Control-Allow-Origin":"*"
         },
         body: JSON.stringify({ temp: temp, sensorID: 1 }),
     })
-    .then((res) => res.json())
-    .then((res) => console.log(res));
-    
+    .then((res) => console.log({status:res.status,text:res.statusText}) )
+    .catch(err => console.log(err));
+   
 };
 
 module.exports = makePost;
