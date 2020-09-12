@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "i2c-bus": "^5.2.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "pigpio": "^3.2.3",
     "serialport": "^9.0.0"
   },
